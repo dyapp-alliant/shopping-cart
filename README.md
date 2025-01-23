@@ -12,6 +12,8 @@ This endpoint takes in a body in the following format
 }
 ```
 
+It returns the list of items currently in the cart.
+
 This endpoint will throw an error if the product code provided is not found in the list of available products.
 
 ## POST /cart/checkout
