@@ -7,14 +7,14 @@ public class Terminal : ITerminal
 {
     private readonly IProductList _products;
     
-    private readonly Dictionary<Product, int> _scannedItems = [];
+    private Dictionary<Product, int> _scannedItems = [];
 
     public Terminal(IProductList products)
     {
         _products = products;
     }
 
-    public void Scan(string item)
+    public Dictionary<string, int> Scan(string item)
     {
         if (string.IsNullOrWhiteSpace(item))
         {
@@ -25,6 +25,8 @@ public class Terminal : ITerminal
 
         _scannedItems.TryGetValue(product, out int quantity);
         _scannedItems[product] = quantity + 1;
+
+        return _scannedItems.ToDictionary(_ => _.Key.Code, _ => _.Value);
     }
 
     public decimal Total()
@@ -37,5 +39,10 @@ public class Terminal : ITerminal
         }
 
         return total;
+    }
+
+    public void Clear()
+    {
+        _scannedItems = [];
     }
 }

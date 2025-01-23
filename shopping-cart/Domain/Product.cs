@@ -29,7 +29,14 @@ public class Product
 
     public decimal CalculatePrice(int quantity)
     {
-        throw new NotImplementedException();
+        if (BulkDiscount == null || quantity < BulkDiscount.Quantity)
+        {
+            return quantity * Price;
+        }
+
+        var bulk = quantity / BulkDiscount.Quantity;
+        var remaining = quantity % BulkDiscount.Quantity;
+        return (bulk * BulkDiscount.Price) + (remaining * Price);
     }
 
     // Overriding equality operators so I can use Product class as dictionary key
