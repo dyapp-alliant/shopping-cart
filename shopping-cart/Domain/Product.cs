@@ -26,6 +26,27 @@ public class Product
             BulkDiscount = bulkDiscount;
         }
     }
+
+    public decimal CalculatePrice(int quantity)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Overriding equality operators so I can use Product class as dictionary key
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as Product);
+    }
+
+    public bool Equals(Product? other)
+    {
+        return other != null && Code == other.Code;
+    }
+
+    public override int GetHashCode()
+    {
+        return Code.GetHashCode();
+    }
 }
 
 public class BulkDiscount

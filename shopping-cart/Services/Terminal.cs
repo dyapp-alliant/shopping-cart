@@ -6,6 +6,8 @@ namespace ShoppingCart.Services;
 public class Terminal : ITerminal
 {
     private readonly IProductList _products;
+    
+    private readonly Dictionary<Product, int> _scannedItems = [];
 
     public Terminal(IProductList products)
     {
@@ -14,16 +16,26 @@ public class Terminal : ITerminal
 
     public void Scan(string item)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(item))
+        {
+            throw new ArgumentNullException("Item code cannot be empty");
+        }
+
+        var product = _products.GetByCode(item);
+
+        _scannedItems.TryGetValue(product, out int quantity);
+        _scannedItems[product] = quantity + 1;
     }
 
     public decimal Total()
     {
-        throw new NotImplementedException();
-    }
+        decimal total = 0.00m;
 
-    private decimal CalculatePrice(Product product, int quantity)
-    {
-        throw new NotImplementedException();
+        foreach (var item in _scannedItems)
+        {
+            total += item.Key.CalculatePrice(item.Value);
+        }
+
+        return total;
     }
 }
