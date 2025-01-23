@@ -1,6 +1,6 @@
 # Shopping Cart API
 
-This API has two endpoints:
+This API has three endpoints:
 
 ## PUT /cart
 
@@ -18,4 +18,8 @@ This endpoint will throw an error if the product code provided is not found in t
 
 ## POST /cart/checkout
 
-This endpoint clears the cart and returns the total price of all items scanned before it was called. This endpoint does not take in a body.
+This endpoint returns the total price of all items scanned before it was called. This endpoint does not take in a body.
+
+## DELETE /cart
+
+This endpoint clears all items in the cart, and does not take in a body.
