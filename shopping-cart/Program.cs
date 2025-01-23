@@ -19,6 +19,7 @@ namespace ShoppingCart
             // Registering as a singleton for DEMO ONLY to keep cart items in memory
             // In a real situation where the API was serving distributed requests, I would use another implementation (Redis, in-memory cache, etc)
             builder.Services.AddSingleton<ITerminal, Terminal>();
+            builder.Services.AddScoped<IProductList, ProductList>();
 
             var app = builder.Build();
 
