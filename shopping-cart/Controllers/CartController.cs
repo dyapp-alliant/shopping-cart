@@ -29,7 +29,12 @@ public class CartController
     public decimal Checkout()
     {
         var total = _terminal.Total();
-        _terminal.Clear();
         return total;
+    }
+
+    [HttpDelete]
+    public void Clear()
+    {
+        _terminal.Clear();
     }
 }
