@@ -23,3 +23,8 @@ This endpoint returns the total price of all items scanned before it was called.
 ## DELETE /cart
 
 This endpoint clears all items in the cart, and does not take in a body.
+
+# Setup Instructions
+
+Ensure you have the .NET Core 8 SDK installed locally.
+From the `./shopping-cart` directory, run `dotnet run`.
