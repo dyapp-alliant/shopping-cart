@@ -32,7 +32,7 @@ public class CartController
         return total;
     }
 
-    [HttpDelete]
+    [HttpDelete(Name = "clear_cart")]
     public void Clear()
     {
         _terminal.Clear();
